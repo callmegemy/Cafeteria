@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+
+
+.login-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    width: 500px;
+    height: 550px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+
+
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+    color: #5a3d2b;
+    font-size: 16px;
+}
+
+
+.avatar img {
+    width: 250px;
+    height: 300px;
+    display: block;
+    margin: 0 auto 30px auto;
+    border-radius: 50%;
+}
+
+
+.input-box {
+    margin-bottom: 10px;
+}
+
+.input-box input {
+    width: 470px;
+    padding: 10px;
+    border:2px solid #ccc;
+    border-radius: 18px;
+    font-size: 16px;
+    outline: none;
+
+}
+input:focus {
+    border-color: #5a3d2b; 
+    box-shadow: 0 0 5px #5a3d2b; 
+}
+
+select:focus {
+    border-color: #5a3d2b;
+    box-shadow: 0 0 5px #5a3d2b;
+}
+
+
+.button-box {
+    text-align: center;
+}
+
+.button-box button {
+    background-color: #5a3d2b;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.button-box button:hover {
+    background-color: #7b5b43;
+}
+
+.links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.links a {
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+/*  Register */
+.input-box select,
+.input-box input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border:2px solid #ddd;
+    border-radius: 18px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 32;
+    text-decoration: solid;
+    color: #5a3d2b;
+    text-align: center;
+    margin-bottom: 20px;
+}
