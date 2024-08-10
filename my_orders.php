@@ -7,9 +7,16 @@
     <title>My Orders</title>
     <link rel="stylesheet" href="css/myorders.css">
     <link rel="icon" href="images/cafeteria.png" type="image/png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body>
+
+    <?php 
+    include 'design/header.php';
+ ?>
     <div class="container">
         <main>
             <h1>My Orders</h1>
@@ -118,7 +125,7 @@
         <span>EGP 104</span>
     </div>
 
-    <div class="pagination">
+    <div class="pagination mt-4" >
         <button class="prev-page">&lt;</button>
         <span class="page-number">1</span>
 
@@ -126,8 +133,12 @@
     </div>
     </main>
     </div>
+    <?php 
+ require "design/footer.php";
+ ?>
 
     <script src="js/myorders.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
