@@ -1,0 +1,47 @@
+body {
+    padding-top: 100px; 
+    padding-bottom: 50px; 
+}
+.highlight {
+    background-color: #4B6F44;
+    color: white;
+}
+.product-item {
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, background-color 0.3s ease; 
+    padding: 10px;
+    margin-bottom: 20px; 
+}
+.product-item:hover {
+    background-color:#FCf8f3; 
+    transform: translateY(-10px); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+}
+.quantity-controls {
+    display: flex;
+    align-items: center;
+}
+.quantity-controls button {
+    background-color: #4B6F44;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.quantity-controls span {
+    width: 30px;
+    text-align: center;
+}
+.bill {
+    background-color:#FCf8f3;
+    padding: 20px;
+    border-radius: 10px;
+}
+.search-select-container {
+    margin-bottom: 20px;
+}
+.search-select-container input {
+    width: 100%;
+}

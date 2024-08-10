@@ -1,0 +1,18 @@
+
+header {
+    background-color: #4b3723 ;
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.navbar-nav .nav-link {
+    color: white !important;
+}
+@media (max-width: 768px) {
+    .navbar-nav .nav-item {
+        margin: 10px 0;
+    }
+}
