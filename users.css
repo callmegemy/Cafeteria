@@ -1,0 +1,144 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: #4b3723;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px #4b37237a;
+  }
+
+  h2 {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+
+  .add-user {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+  .add-user button{
+    background-color: #4B6F44;
+   
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .add-user button:hover {
+   
+    color: #4b3723;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #FCf8f3 !important;
+    border: 1px solid white !important;
+    border-radius: 20px;
+  }
+
+
+
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid white;
+
+  }
+
+  th {
+    background-color: #4b3723 !important;
+    color: white;
+  }
+ 
+
+  .user-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .actions button {
+   
+    color: white;
+    border: 1px solid white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .edit{
+    background-color: #4B6F44;
+  }
+  
+  .actions button:hover {
+   
+    color: #4b3723;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .pg-link {
+    color: #4b3723 !important;
+  }
+  .pg-link:hover {
+     box-shadow: 0 2px 5px #4b3723;
+    background-color: white;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    table {
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 5px;
+    }
+
+    .product-image {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .admin-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .admin-section img {
+      margin-bottom: 5px;
+    }
+
+    .actions {
+      flex-direction: column;
+    }
+
+    .actions button {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+  }
