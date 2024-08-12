@@ -60,7 +60,7 @@ body {
 
   th {
     background-color: #4b3723 !important;
-    color: white;
+    color: white !important;
   }
  
 
@@ -85,7 +85,8 @@ body {
     cursor: pointer;
   }
   .edit{
-    background-color: #4B6F44;
+    background-color: #4B6F44 !important;
+    color: white !important;
   }
   
   .actions button:hover {

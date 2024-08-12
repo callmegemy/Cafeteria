@@ -1,28 +1,18 @@
 body {
-    margin: 0;
-    padding: 0;
     font-family: Arial, sans-serif;
     background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    padding-bottom: 80px; 
+    padding-top: 90px; 
 }
 
-
-
-
 .login-container {
-    margin: 0;
-    padding: 0;
     width: 100%;
-    width: 500px;
-    height: 550px;
+    max-width: 500px;
     background-color: #fff;
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
-
-
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
 }
 
 .form-label {
@@ -33,7 +23,6 @@ body {
     font-size: 16px;
 }
 
-
 .avatar img {
     width: 250px;
     height: 300px;
@@ -42,33 +31,31 @@ body {
     border-radius: 50%;
 }
 
-
 .input-box {
     margin-bottom: 10px;
 }
 
-.input-box input {
-    width: 470px;
+.input-box input,
+.input-box select,
+.input-box input[type="file"] {
+    width: 100%;
     padding: 10px;
-    border:2px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 18px;
     font-size: 16px;
     outline: none;
-
-}
-input:focus {
-    border-color: #4b3723; 
-    box-shadow: 0 0 5px #4b3723; 
+    box-sizing: border-box;
 }
 
+input:focus,
 select:focus {
     border-color: #4b3723;
     box-shadow: 0 0 5px #4b3723;
 }
 
-
 .button-box {
     text-align: center;
+    margin-top: 20px;
 }
 
 .button-box button {
@@ -100,23 +87,12 @@ select:focus {
     text-decoration: underline;
 }
 
-/*  Register */
-.input-box select,
-.input-box input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    border:2px solid #ddd;
-    border-radius: 18px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-    outline: none;
-}
-
 h1 {
     margin-top: 0;
-    font-size: 32;
-    text-decoration: solid;
+    font-size: 32px;
     color: #4b3723;
     text-align: center;
     margin-bottom: 20px;
 }
+
+
