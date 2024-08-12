@@ -7,6 +7,37 @@
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="stylesheet" href="./css/header.css">
     <title>Document</title>
+    <style>.myBtn {
+  background-color: #4b3723 !important;
+  color: white;
+  transition: all 0.3s;
+}
+
+.myBtn:hover {
+  color: white !important;
+  background-color: #4b3723 !important;
+}
+
+.myInput:focus {
+  border-color: #4f3131 !important;
+  box-shadow: 0 0 0 0.25rem rgba(79, 49, 49, 0.15);
+}
+.success-btn {
+  transition: background-color 0.1s;
+  border: 1px solid grey;
+}
+.success-btn:hover {
+  background-color: #4b3723;
+  color: white;
+}
+.pg-link {
+  color: #4b3723 !important;
+}
+.pg-link:focus {
+  box-shadow: 0 0 0 0.25rem rgba(79, 49, 49, 0.15);
+  background-color: white;
+}
+</style>
   </head>
 
 
