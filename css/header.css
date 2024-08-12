@@ -1,6 +1,5 @@
-
 header {
-    background-color: #4b3723 ;
+    background-color: #4b3723;
     color: white;
     padding: 10px 0;
     position: fixed;
@@ -8,11 +7,37 @@ header {
     width: 100%;
     z-index: 1000;
 }
+
 .navbar-nav .nav-link {
     color: white !important;
 }
+
+.navbar-nav.ml-auto {
+    margin-left: auto;
+}
+
+
+.navbar-nav .d-flex {
+    align-items: center;
+}
+
+
+.navbar-nav img {
+    vertical-align: middle;
+}
+
+.navbar-nav span {
+    margin-left: 10px;
+    font-size: 1rem; 
+}
+
 @media (max-width: 768px) {
     .navbar-nav .nav-item {
         margin: 10px 0;
+    }
+
+    .navbar-nav .d-flex {
+        justify-content: center; 
+        margin-top: 10px;
     }
 }

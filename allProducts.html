@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafeteria Products</title>
+  <link rel="stylesheet" href="css/CafeteriaProducts.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h2>All Products</h2>
+    <div class="add-product">
+      <button>Add product</button>
+    </div>
+
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Image</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tea</td>
+          <td>5 EGP</td>
+          <td><img class="product-image" src="images/tea.jpg" alt="Tea"></td>
+          <td>
+            <div class="actions">
+              <button class="Available ">Available</button>
+              <button class="edit btn btn-success">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Ice Coffee</td>
+          <td>7 EGP</td>
+          <td><img class="product-image" src="images/iceCofee.jpg" alt="iceCoffee"></td>
+          <td>
+            <div class="actions">
+              <button class="Available ">Available</button>
+              <button class="edit btn btn-success">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Coffee</td>
+          <td>6 EGP</td>
+          <td><img class="product-image" src="images/cofee.jpg" alt="Coffee"></td>
+          <td>
+            <div class="actions">
+              <button class="Available">Available</button>
+              <button class="edit btn btn-success">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <nav class="d-flex justify-content-center">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link pg-link" href="#">&lt;</a></li>
+        <li class="page-item"><a class="page-link pg-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link pg-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link pg-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link pg-link" href="#">&gt;</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <script src="bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>
