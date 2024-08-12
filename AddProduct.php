@@ -1,13 +1,27 @@
+
+<?php
+
+  if(isset($_GET['errors'])){
+      $errors = json_decode($_GET['errors'],true);
+  }
+  if(isset($_GET['prev_data'])){
+      $prev_data = json_decode($_GET['prev_data'],true);
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./css/styles.css" />
-    <link rel="stylesheet" href="./css/header.css">
-    <title>Document</title>
-    <style>.myBtn {
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/header.css">
+    <title>Add Product</title>
+    <style>
+    body{
+      padding-top: 80px;
+    }
+    .myBtn {
   background-color: #4b3723 !important;
   color: white;
   transition: all 0.3s;
@@ -50,30 +64,38 @@
       <h1>Add Product</h1>
       <div class="row">
         <div class="col-12 col-lg-6">
-          <form class="w-100 p-2" action="">
+          <form class="w-100 p-2" action="functions/product_add.php" method="post" enctype="multipart/form-data">
             <div class="mb-3">
               <label for="product" class="form-label">Product Name</label>
               <input
                 id="product_name"
-                required
+                value="<?php $val=isset($prev_data['name'])?$prev_data['name']:"";echo $val;?>"
+                name="name"
                 type="text"
                 class="form-control myInput"
                 id="product"
                 placeholder="Enter your product name"
               />
+              <span class="text-danger">
+                    <?php $error=isset($errors['name'])? $errors['name']: ''; echo $error; ?>
+                    </span>
             </div>
 
             <div class="mb-3">
               <label for="price" class="form-label">Product Price</label>
               <input
                 id="product_price"
-                required
+                value="<?php $val=isset($prev_data['price'])?$prev_data['price']:"";echo $val;?>"
+                name="price"
                 type="number"
                 min="1"
                 class="form-control myInput"
                 id="price"
                 placeholder="Enter your product price"
               />
+              <span class="text-danger">
+                    <?php $error=isset($errors['price'])? $errors['price']: ''; echo $error; ?>
+                    </span>
             </div>
 
             <div class="mb-3">
@@ -82,24 +104,35 @@
                 id="product_category"
                 class="form-select myInput"
                 id="category"
+                name="category"
               >
-                <option selected>Choose your product category</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option >Choose your product category</option>
+                <?php 
+                $table='categories';
+                $data =$db->select($table);
+                foreach($data as $categ){
+                ?>
+                <option <?php if($prev_data['category']==$categ['id']){echo "selected";} ?> value="<?php echo $categ['id'] ?>"><?php echo $categ['name'] ?></option>
+              <?php } ?>
               </select>
+              <span class="text-danger">
+                    <?php $error=isset($errors['category'])? $errors['category']: ''; echo $error; ?>
+                    </span>
             </div>
 
             <div class="mb-3">
               <label for="pic" class="form-label">Product Picture</label>
               <input
                 id="product_pic"
-                required
+                name="img"
                 type="file"
                 class="form-control myInput"
                 id="pic"
                 placeholder="Enter your product price"
               />
+              <span class="text-danger">
+                    <?php $error=isset($errors['img'])? $errors['img']: ''; echo $error; ?>
+                    </span>
             </div>
 
             <div class="my-2 d-lg-none">
@@ -132,9 +165,8 @@
       </div>
     </main>
 
-    <footer></footer>
 
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
   </body>
 </html>

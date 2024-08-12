@@ -1,3 +1,3 @@
-<footer class="text-center" >
+<!-- <footer class="text-center" >
         <p>&copy; 2024 Cafeteria</p>
-    </footer>
+    </footer> -->
