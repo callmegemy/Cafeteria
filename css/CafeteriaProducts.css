@@ -36,7 +36,7 @@ th, td {
 
 th {
   background-color: #4b3723 !important;
-  color: white;
+  color: white !important;
 }
 
 .add-product {
@@ -45,7 +45,7 @@ th {
   margin-bottom: 20px;
 }
 
-.add-product button {
+.add-product a {
   background-color: #4B6F44;
   color: white;
   padding: 10px 20px;
