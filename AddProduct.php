@@ -112,7 +112,9 @@
                 $data =$db->select($table);
                 foreach($data as $categ){
                 ?>
-                <option <?php if($prev_data['category']==$categ['id']){echo "selected";} ?> value="<?php echo $categ['id'] ?>"><?php echo $categ['name'] ?></option>
+                <option <?php if(isset($prev_data['category'])){
+                  if($prev_data['category']==$categ['id']){echo "selected";} 
+                } ?> value="<?php echo $categ['id'] ?>"><?php echo $categ['name'] ?></option>
               <?php } ?>
               </select>
               <span class="text-danger">
