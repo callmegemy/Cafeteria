@@ -43,5 +43,8 @@ class Database {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$id]);
     }
+    public function lastInsertId() {
+        return $this->conn->lastInsertId();
+    }
 }
 ?>
