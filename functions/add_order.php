@@ -8,6 +8,10 @@ session_start();
 $db = new Database();
 $db->connect($db_host, $db_user, $db_pass, $db_name);
 
+// Get users and products from the database
+$users = $db->select('users');
+$products = $db->select('products');
+
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the form data
@@ -28,22 +32,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Get the last inserted order ID
         $order_id = $db->lastInsertId();
 
-        // Prepare to insert into orders_products table
-
-
-
+        // Insert each product into the orders_products table
         foreach ($_POST['products'] as $product_id => $product_data) {
-            $productColumns = "order_id, product_id, quantity, price";
-            $productValues = "'$order_id', '$product_id', '$quantity', '$price'";
             $quantity = $product_data['quantity'];
             $price = $product_data['price'];
+            $productColumns = "order_id, product_id, quantity, price";
+            $productValues = "'$order_id', '$product_id', '$quantity', '$price'";
             $db->insert('orders_products', $productColumns, $productValues);
         }
 
-
         echo "Order successfully added!";
     } catch (Exception $e) {
-
         echo "Failed to add order: " . $e->getMessage();
     }
 } else {

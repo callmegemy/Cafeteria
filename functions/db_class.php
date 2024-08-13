@@ -18,6 +18,20 @@ class Database {
         $stmt->execute();
     }
 
+
+    public function insertOrder($user_id, $date, $room, $ext, $comment, $total, $status) {
+        $columns = "user_id, date, room, ext, comment, total, status";
+        $values = "'$user_id', '$date', '$room', '$ext', '$comment', '$total', $status";
+        $this->insert('orders', $columns, $values);
+        return $this->lastInsertId();
+    }
+
+    public function insertOrderProduct($order_id, $product_id, $quantity, $price) {
+        $columns = "order_id, product_id, quantity, price";
+        $values = "'$order_id', '$product_id', '$quantity', '$price'";
+        $this->insert('orders_products', $columns, $values);
+    }
+
     public function select($table) {
         $sql = "SELECT * FROM $table";
         $stmt = $this->conn->prepare($sql);
