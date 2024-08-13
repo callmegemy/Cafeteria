@@ -7,7 +7,7 @@
     <title>My Orders</title>
     <link rel="stylesheet" href="css/orders.css">
     <link rel="icon" href="images/cafeteria.png" type="image/png">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
 </head>
@@ -195,7 +195,7 @@
     ?>
 
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>
