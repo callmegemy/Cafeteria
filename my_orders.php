@@ -1,4 +1,6 @@
 <?php
+
+/////////////////////////
 include 'design/header.php';
 $user_id = $_SESSION['id'];
 
