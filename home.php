@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Page</title>
+    <title>Home Page</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-    <?php include 'design/header.php'; 
+    <?php 
+    include 'design/header.php'; 
+
+    $user_id = $_SESSION['id'];
+    $user = $db->getRow('users', 'id', $user_id);
+
     $users = $db->select('users');
     $products = $db->select('products');
+
+    $isAdmin = $user['perm_id'] == 2;
+
+
     ?>
     <div class="container">
         <div class="row">
@@ -20,33 +29,60 @@
                 <input type="text" id="search-input" class="form-control" placeholder="Search products...">
             </div>
         </div>
+        
         <div class="row justify-content-between">
             <div class="col-xs-12 col-s-12 col-md-8 col-lg-8">
-                <h3 class="text-center">Products</h3>
-                <div>
-                    <label for="user-select">Add to User</label>
-                    <select id="user-select" name="user_id" class="form-control">
-                        <option value="">Select user</option>
-                        <?php foreach ($users as $user): ?>
-                            <option value="<?= $user['id'] ?>"><?= $user['name'] ?></option>
+                <h3 class="text-center">Latest </h3>
+                <?php 
+                    
+                if ($isAdmin): ?>
+                    <div>
+                        <label for="user-select">Add to User</label>
+                        <select id="user-select" name="user_id" class="form-control">
+                            <option value="">Select user</option>
+                            <?php foreach ($users as $user): ?>
+                                <option value="<?= $user['id'] ?>"><?= $user['name'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                <?php else: ?>
+                    <div class="row">
+                        <?php
+                         $latestProducts = $db->getLatestUserProducts($user_id);
+                        foreach ($latestProducts as $lp): ?>
+                            <div class="product-item col-6 col-md-6 col-lg-4 text-center">
+                                <div class="product-image-wrapper">
+                                    <img src="<?= $lp['image'] ?>" alt="<?= $lp['name'] ?>" class="img-fluid rounded-circle">
+                                    <div class="price-circle bg-success text-white rounded">
+                                        EGP <?= $lp['price'] ?>
+                                    </div>
+                                </div>
+                                <p><?= $lp['name'] ?></p>
+                            </div>
                         <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="row">
-                    <hr class="container">
-                    <?php foreach ($products as $product): ?>
-                        <div class="product-item col-6 col-md-6 col-lg-4 text-center">
-                            <img src="<?= $product['image'] ?>" alt="<?= $product['name'] ?>">
-                            <p><?= $product['name'] ?></p>
-                            <p>EGP <?= $product['price'] ?></p>
-                            <button class="btn highlight add-product" 
-                                data-product-id="<?= $product['id'] ?>" 
-                                data-product="<?= $product['name'] ?>" 
-                                data-price="<?= $product['price'] ?>">Add</button>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+                    </div>
+                <?php endif; ?>
+                <hr class="container">
+                <h3 class="text-center">All Products </h3>
+
+                <div class="row" id="products-container">
+        <!-- Product items will be injected here by PHP -->
+        <?php foreach ($products as $product): ?>
+            <div class="product-item col-6 col-md-6 col-lg-4 text-center" data-product-name="<?= strtolower($product['name']) ?>">
+                <img src="<?= $product['image'] ?>" alt="<?= $product['name'] ?>" class="img-fluid">
+                <p><?= $product['name'] ?></p>
+                <p>EGP <?= $product['price'] ?></p>
+                <button class="btn highlight add-product" 
+                    data-product-id="<?= $product['id'] ?>" 
+                    data-product="<?= $product['name'] ?>" 
+                    data-price="<?= $product['price'] ?>">Add</button>
             </div>
+        <?php endforeach; ?>
+    </div>
+    <div id="no-products-message" class="text-center" style="display: none;">
+        <p>No products found.</p>
+    </div>
+</div>
             <div class="col-12 col-s-12 col-md-4 col-lg-3 bill mt-4">
                 <h3 class="text-center">Bill</h3>
                 <form id="bill-form" action="functions/add_order.php" method="POST">
@@ -140,6 +176,32 @@
                     updateItem($item, currentQuantity - 1);
                 }
             });
+            $(document).ready(function() {
+    // Function to filter products based on search input
+    function filterProducts(searchTerm) {
+        const $productItems = $('#products-container .product-item');
+        let foundAny = false;
+
+        $productItems.each(function() {
+            const productName = $(this).data('product-name');
+            if (productName.includes(searchTerm)) {
+                $(this).show();
+                foundAny = true;
+            } else {
+                $(this).hide();
+            }
+        });
+
+        $('#no-products-message').toggle(!foundAny);
+    }
+
+    // Search input event handler
+    $('#search-input').on('input', function() {
+        const searchTerm = $(this).val().toLowerCase();
+        filterProducts(searchTerm);
+    });
+});
+
         });
     </script>
 </body>

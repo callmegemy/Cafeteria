@@ -12,12 +12,10 @@ class Database {
     }
 
     public function insert($table, $columns, $values) {
-
         $sql = "INSERT INTO $table ($columns) VALUES ($values)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
     }
-
 
     public function insertOrder($user_id, $date, $room, $ext, $comment, $total, $status) {
         $columns = "user_id, date, room, ext, comment, total, status";
@@ -26,9 +24,9 @@ class Database {
         return $this->lastInsertId();
     }
 
-    public function insertOrderProduct($order_id, $product_id, $quantity, $price) {
-        $columns = "order_id, product_id, quantity, price";
-        $values = "'$order_id', '$product_id', '$quantity', '$price'";
+    public function insertOrderProduct($order_id, $product_id, $quantity, $price, $user_id) {
+        $columns = "order_id, user_id, product_id, quantity, price";
+        $values = "'$order_id', '$user_id', '$product_id', '$quantity', '$price'";
         $this->insert('orders_products', $columns, $values);
     }
 
@@ -57,8 +55,23 @@ class Database {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$id]);
     }
+
     public function lastInsertId() {
         return $this->conn->lastInsertId();
     }
+
+public function getLatestUserProducts($user_id) {
+    $sql = "SELECT p.*, op.order_id, o.date 
+            FROM products p 
+            JOIN orders_products op ON p.id = op.product_id 
+            JOIN orders o ON op.order_id = o.id 
+            WHERE o.user_id = ? 
+            ORDER BY o.date DESC, op.order_id DESC 
+            LIMIT 3";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([$user_id]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 }
 ?>
