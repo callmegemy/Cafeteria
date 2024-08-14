@@ -2,7 +2,7 @@
 require "functions/connect.php";
 require "functions/db_class.php";
 session_start();
-if($_SESSION['login']){
+if(isset($_SESSION['login'])){
     $db = new Database();
     $db->connect($db_host, $db_user, $db_pass, $db_name);
     $table = 'users';
