@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/forgetPass.css">
     <title>Forget Password</title>
 </head>
 
@@ -16,21 +15,23 @@
     $db = new Database();
     $db->connect($db_host, $db_user, $db_pass, $db_name);
     ?>
-    <main style="max-width: 850px; margin: 0 auto; height: 100svh; display: flex; justify-content:center; flex-direction: column;">
-        <h4>Please Enter your email address</h4>
-        <form method="POST" action="./functions/check_if_user_exists.php">
-            <div class="form-group">
-                <label class="mb-1" for="exampleInputEmail1">Email address</label>
-                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <?php $error = isset($errors['name']) ? $errors['name'] : '';
-                echo $error; ?>
+    <main>
+        <div class="form-container">
+            <div class="lock-icon">
+                <img src="images/lock.png" alt="Lock Icon">
             </div>
-
-            <button type="submit" class="btn btn-primary mt-4">Submit</button>
-        </form>
+            <h4>Please Enter Your Email Address</h4>
+            <form method="POST" action="./functions/check_if_user_exists.php">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email Address</label>
+                    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <?php $error = isset($errors['name']) ? $errors['name'] : '';
+                    echo $error; ?>
+                </div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
     </main>
-
-
 </body>
 
 </html>
