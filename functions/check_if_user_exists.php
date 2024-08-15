@@ -20,5 +20,42 @@ if ($user_exists !== null) {
     setcookie($cookie_name, $cookie_value, $expire_time, "/");
     header('Location: ../changePassword.php');
 } else {
-    echo "There's no account save in our database with email address";
+    echo "
+    <div style='
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #FFFBF2;
+        font-family: Arial, sans-serif;
+    '>
+        <div style='
+            background-color: #FFFBF2;
+            color: #33211D;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px #33211D;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        '>
+            <h2 style='
+                color: #DA9F5B;
+                margin-bottom: 20px;
+            '>Error</h2>
+            <p style='color: #33211D;'>There's no account saved in our database with this email address.</p>
+            <a href='../forgetPassword.php' style='
+                display: inline-block;
+                margin-top: 20px;
+                padding: 12px 20px;
+                background-color: #DA9F5B;
+                color: #33211D;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+            '>Try Again</a>
+        </div>
+    </div>
+    ";
 }
