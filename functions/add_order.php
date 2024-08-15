@@ -12,7 +12,7 @@ $products = $db->select('products');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $_SESSION['id']; 
     $date = date('Y-m-d H:i:s');
-    if(empty($_POST['room'])){
+    if($_POST['room']== 0){
         $old_room = $db->getRow('users', 'id', $user_id);
         $room = $old_room['room_id'];
     }else{
