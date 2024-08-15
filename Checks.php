@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,7 +53,7 @@
 
  ?>
 
-    <main class="container p-4">
+<main class="container p-4">
         <h1 class="mb-3"><span style="background-color: #4f3131; padding: 0px 10px; border-radius: 16px; color:white">C</span>hecks</h1>
 
         <div style="max-width: 550px;" class="row">
@@ -67,7 +68,7 @@
             </div>
 
             <div class="col-12">
-                <label for="user" class="form-label">Product Category</label>
+                <label for="user" class="form-label">user</label>
                 <select id="user" class="form-select myInput" id="category">
                     <option selected>Select the user</option>
                     <option value="1">One</option>
@@ -86,14 +87,8 @@
 
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th scope="row" class="d-flex align-items-center gap-2">
-                        <button id="show_orders_button" class="btn btn-sm success-btn">+</button>
-                        <span>Shrouk</span>
-                    </th>
-                    <td>100000</td>
-                </tr>
+            <tbody id="users_table_body">
+                <!-- Dynamically loaded users and amounts -->
             </tbody>
         </table>
 
@@ -107,14 +102,8 @@
 
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row" class="d-flex align-items-center gap-2">
-                            <button id="show_order_details_button" class="btn btn-sm success-btn">+</button>
-                            <span>2020/5/5</span>
-                        </th>
-                        <td>150</td>
-                    </tr>
+                <tbody id="orders_table_body">
+                    <!-- Dynamically loaded orders -->
                 </tbody>
             </table>
         </div>
@@ -216,6 +205,38 @@ showPage(currentPage);
                 $("#order_details").css('padding', '0 48px')
             }
         })
+
+        // Handle date and user selection
+        $("#from_date, #to_date, #user").change(function() {
+            const fromDate = $("#from_date").val();
+            const toDate = $("#to_date").val();
+            const selectedUser = $("#user").val();
+
+            // Send AJAX request to fetch data based on selected criteria
+            $.ajax({
+                url: "fetch_data.php", // Replace with your actual PHP file
+                method: "POST",
+                data: {
+                    from_date: fromDate,
+                    to_date: toDate,
+                    user: selectedUser
+                },
+                success: function(response) {
+                    // Update the users table
+                    $("#users_table_body").html(response.users);
+
+                    // Update the orders table
+                    $("#orders_table_body").html(response.orders);
+
+                    // Update pagination if necessary
+                    // ...
+                },
+                error: function() {
+                    // Handle error
+                    console.error("Error fetching data.");
+                }
+            });
+        });
     </script>
 </body>
 

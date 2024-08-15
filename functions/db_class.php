@@ -8,6 +8,8 @@ class Database
         $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
         try {
             $this->conn = new PDO($dsn, $username, $password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
@@ -80,21 +82,7 @@ class Database
     public function lastInsertId() {
         return $this->conn->lastInsertId();
     }
-
-public function getLatestUserProducts($user_id) {
-    $sql = "SELECT p.*, op.order_id, o.date 
-            FROM products p 
-            JOIN orders_products op ON p.id = op.product_id 
-            JOIN orders o ON op.order_id = o.id 
-            WHERE o.user_id = ? 
-            ORDER BY o.date DESC, op.order_id DESC 
-            LIMIT 3";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->execute([$user_id]);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-public function checkIfUserExists($table, $email)
+    public function checkIfUserExists($table, $email)
     {
         $sql = "SELECT * FROM $table WHERE email = ?";
         $stmt = $this->conn->prepare($sql);
@@ -122,4 +110,19 @@ public function checkIfUserExists($table, $email)
             echo "there's no code";
         }
     }
+  
+    public function getLatestUserProducts($user_id) {
+        $sql = "SELECT p.*, op.order_id, o.date 
+                FROM products p 
+                JOIN orders_products op ON p.id = op.product_id 
+                JOIN orders o ON op.order_id = o.id 
+                WHERE o.user_id = ? 
+                ORDER BY o.date DESC, op.order_id DESC 
+                LIMIT 3";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$user_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
+
+?>
