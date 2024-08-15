@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         header("location :../my_orders.php;");
     } catch (Exception $e) {
-        echo "Failed to add order: " . $e->getMessage();
+        header("location: ../home.php?error=The Cart Is empty");
     }
 } else {
     echo "Invalid request method.";

@@ -12,7 +12,7 @@
 <body>
     <?php 
     include 'design/header.php'; 
-    
+
 
     $user_id = $_SESSION['id'];
     $user = $db->getRow('users', 'id', $user_id);
@@ -67,7 +67,6 @@
                 <h3 class="text-center">All Products </h3>
 
                 <div class="row" id="products-container">
-        <!-- Product items will be injected here by PHP -->
         <?php foreach ($products as $product): ?>
             <div class="product-item col-6 col-md-6 col-lg-4 text-center" data-product-name="<?= strtolower($product['name']) ?>">
                 <img src="<?= $product['image'] ?>" alt="<?= $product['name'] ?>" class="img-fluid">
@@ -88,19 +87,28 @@
                 <h3 class="text-center">Bill</h3>
                 <form id="bill-form" action="functions/add_order.php" method="POST">
                     <div id="bill-items"></div>
+                    <?php if(isset($_GET['error'])){echo "<span class='text-danger fw-bold'>".$_GET['error']."</span>";} ?>
                     <div class="form-group">
-                        <label for="notes">Notes</label>
+                        <label for="notes">Notes </label>
                         <textarea id="notes" name="notes" class="form-control" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="room">Room</label>
                         <br>
-                        <span class="text-danger fw-100">* if you are not in your room</span>
-                        <input type="text" id="room" name="room" class="form-control">
+                        <span class="text-danger ">* if you are not in your room</span>
+                        <select class="form-control" name="room" id="room">
+                        <option value="0">Choose Your Room</option>
+                        <?php  
+                            $rooms = $db->select('rooms');
+                            foreach($rooms as $room){
+                                echo '<option value="'.$room['id'].'">'.$room['name'].'</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="ext">Ext</label>
-                        <input type="text" id="ext" name="ext" class="form-control">
+                        <input type="text" id="ext" name="ext" class="form-control" placeholder="Ext Number">
                     </div>
                     <hr>
                     <h4>Total: EGP <span id="total-price">0</span></h4>
