@@ -112,7 +112,7 @@ class Database
             echo "there's no code";
         }
     }
-
+  
     public function getLatestUserProducts($user_id) {
         $sql = "SELECT p.*, op.order_id, o.date 
                 FROM products p 
@@ -124,6 +124,21 @@ class Database
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$user_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function selectOrder($sql) {
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }  
+    public function userAllOrders($id)
+    {
+        $sql = "SELECT SUM(total) AS total_amount FROM orders WHERE user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total_amount'] ? $result['total_amount'] : 0;
     }
 }
 ?>

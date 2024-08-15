@@ -159,7 +159,7 @@
         const productId = $(this).data('product-id');
         const productName = $(this).data('product');
         const price = $(this).data('price');
-        let $item = $(`.bill-item[data-product-id="${productId}"]`);
+        let $item = $('.bill-item[data-product-id="${productId}"]');
 
         if ($item.length) {
             const newQuantity = parseInt($item.find('.quantity-controls span').text()) + 1;
