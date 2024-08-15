@@ -12,6 +12,7 @@
 <body>
     <?php 
     include 'design/header.php'; 
+    
 
     $user_id = $_SESSION['id'];
     $user = $db->getRow('users', 'id', $user_id);
@@ -93,6 +94,8 @@
                     </div>
                     <div class="form-group">
                         <label for="room">Room</label>
+                        <br>
+                        <span class="text-danger fw-100">* if you are not in your room</span>
                         <input type="text" id="room" name="room" class="form-control">
                     </div>
                     <div class="form-group">
@@ -102,7 +105,7 @@
                     <hr>
                     <h4>Total: EGP <span id="total-price">0</span></h4>
                     <input type="hidden" name="total" id="total-input">
-                    <button type="submit" class="btn highlight btn-block">Confirm</button>
+                    <button type="submit" class="btn highlight btn-block" >Confirm</button>
                 </form>
             </div>
         </div>

@@ -80,10 +80,13 @@ if ($date_from && $date_to) {
                 </thead>
                 <tbody id="order-list">
                     <?php if (!empty($orders)) :
-                        foreach ($orders as $order) { ?>
+                        foreach ($orders as $order) {
+                            $status_name = $db->getRow('order_status', 'id', $order['status']);
+                            ?>
+
                             <tr class="order-row" data-order-id="<?php echo $order['id']; ?>" data-total="<?php echo $order['total']; ?>">
                                 <td><?php echo $order['date']; ?></td>
-                                <td><?php echo $order['status']; ?></td>
+                                <td><?php echo $status_name['name']; ?></td>
                                 <td><?php echo $order['total']; ?> EGP</td>
                                 <td>
                                     <?php if ($order['status'] == '1') : ?>
@@ -148,5 +151,3 @@ if ($date_from && $date_to) {
 </body>
 
 </html>
-=======
->>>>>>> 2af8857cbb9d007c1c70bbb494639dac00c4dda0

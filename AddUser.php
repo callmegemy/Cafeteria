@@ -34,6 +34,8 @@
 <body>
     <?php 
     require "design/header.php";
+    if($data['perm_id'] == 1){header("Location: home.php");};
+
     ?>
     <div class="login-container">
         <div class="login-box">
@@ -56,17 +58,22 @@
                     </span>
                     </div>
 
-                <div class="input-box">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Username"  value="<?php $val=isset($prev_data['username'])?$prev_data['username']:"";echo $val;?>">
-                    <span class="text-danger">
-                    <?php $error=isset($errors['username'])? $errors['username']: ''; echo $error; ?>
-                    </span>
-                </div>
-
-                <div class="input-box">
-            <label class="form-label" for="room">Room No.</label>
-            <input type="text" id="room" name="room" placeholder="Room"  value="<?php $val=isset($prev_data['room'])?$prev_data['room']:"";echo $val;?>">
+                    <div class="input-box">
+                <label class="form-label" for="room">Room No.</label>
+                <select name="room" id="room">
+                <option value="0">Choose Your Room</option>
+                <?php  
+                    $rooms = $db->select('rooms');
+                    foreach($rooms as $room){
+                        echo '<option value="'.$room['id'].'"';
+                        if(isset($prev_data['room']) && $prev_data['room'] == $room['id']) {
+                            echo ' selected';
+                        }
+                        echo '>'.$room['name'].'</option>';
+                    }
+                    ?>
+                    
+                </select>
             <span class="text-danger">
                     <?php $error=isset($errors['room'])? $errors['room']: ''; echo $error; ?>
                     </span>

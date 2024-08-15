@@ -16,6 +16,8 @@
 
     <?php
     include 'design/header.php';
+    if($data['perm_id'] == 1){header("Location: home.php");};
+
     ?>
     <div class="container">
         <main>

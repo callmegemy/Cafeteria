@@ -19,11 +19,6 @@ if (empty($_POST['name'])) {
     $prev_data['name'] = $_POST['name'];
 }
 
-if (empty($_POST['username'])) {
-    $errors['username'] = "username is required";
-} else {
-    $prev_data['username'] = $_POST['username'];
-}
 
 
 if (empty($_POST['ext'])) {
@@ -54,7 +49,7 @@ if (empty($_POST['confirm'])) {
     $errors['confirm'] = "Password does not match";
 }
 
-if (empty($_POST['room'])) {
+if ($_POST['room']== 0) {
     $errors['room'] = "room is required";
 } else {
     $prev_data['room'] = $_POST['room'];

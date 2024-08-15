@@ -16,6 +16,7 @@
 <body>
   <?php
   require "design/header.php";
+  if($data['perm_id'] == 1){header("Location: home.php");};
 
 
   ?>
@@ -25,58 +26,55 @@
       <a class="btn edit" href="AddUser.php">Add user</a>
     </div>
     <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Room</th>
-          <th>Image</th>
-          <th>Ext</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Room</th>
+      <th>Image</th>
+      <th>Ext</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $table = 'users';
+    $stmt = $db->select($table);
+    foreach ($stmt as $user) {
+      $rooms = $db->getRow('rooms', 'id', $user['room_id']);
+    ?>
+      <tr>
+        <td><?php echo $user['name']; ?></td>
+        <td><?php echo $rooms['name']; ?></td>
+        <td><img class="user-image" src="<?php echo $user['image']; ?>" alt="Image"></td>
+        <td><?php echo $user['ext']; ?></td>
+        <td>
+          <a class="edit btn" href="edit_user.php?id=<?php echo $user['id'] ?>">Edit</a>
+          <a href="#deleteModal<?php echo $user['id']; ?>" class="btn btn-danger" data-bs-toggle="modal">Delete</a>
+        </td>
+      </tr>
 
-        <?php
-
-        $table = 'users';
-        $stmt = $db->select($table);
-        foreach ($stmt as $user) {
-        ?>
-          <div class="item">
-            <tr>
-              <td><?php echo $user['name']; ?></td>
-              <td><?php echo $user['room_id']; ?></td>
-              <td><img class="user-image" src="<?php echo $user['image']; ?>" alt="Image"></td>
-              <td><?php echo $user['ext']; ?></td>
-              <td>
-                <div class="actions">
-                  <a class="edit btn" href="edit_user.php?id=<?php echo $user['id'] ?>">Edit</a>
-                  <a href="#deleteModal<?php echo $user['id']; ?>" class="btn btn-danger" data-bs-toggle="modal">Delete</a>
-                </div>
-              </td>
-            </tr>
-          </div>
-
-          <div class="modal fade" id="deleteModal<?php echo $user['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel<?php echo $user['id']; ?>" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="deleteModalLabel<?php echo $user['id']; ?>">Confirm Deletion</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  Are you sure you want to delete the user <?php echo $user['name']; ?>?
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <a href="functions/delete_user.php?id=<?php echo $user['id']; ?>" class="btn btn-danger">Delete</a>
-                </div>
-              </div>
+      <!-- Modal for Delete Confirmation -->
+      <div class="modal fade" id="deleteModal<?php echo $user['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel<?php echo $user['id']; ?>" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteModalLabel<?php echo $user['id']; ?>">Confirm Deletion</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to delete the user <?php echo $user['name']; ?>?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <a href="functions/delete_user.php?id=<?php echo $user['id']; ?>" class="btn btn-danger">Delete</a>
             </div>
           </div>
-        <?php } ?>
-      </tbody>
-    </table>
+        </div>
+      </div>
+    <?php } ?>
+  </tbody>
+</table>
+
 
     <nav class="d-flex justify-content-center">
 

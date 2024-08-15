@@ -24,18 +24,18 @@ if(isset($_SESSION['login'])){
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">My Orders</a></li>
-                <li <?php if($data['perm_id'] == 1){echo "hidden";} ?> class="nav-item"><a class="nav-link" href="#">Products</a></li>
-                <li <?php if($data['perm_id'] == 1){echo "hidden";} ?> class="nav-item"><a class="nav-link" href="#">Users</a></li>
-                <li <?php if($data['perm_id'] == 1){echo "hidden";} ?> class="nav-item"><a class="nav-link" href="#">Manual Orders</a></li>
-                <li <?php if($data['perm_id'] == 1){echo "hidden";} ?> class="nav-item"><a class="nav-link" href="#">Checks</a></li>
+                <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="my_orders.php">My Orders</a></li>
+                <li <?php if($data['perm_id'] == 1){echo "hidden";} ?> class="nav-item"><a class="nav-link" href="allProducts.php">Products</a></li>
+                <li <?php if($data['perm_id'] == 1){echo "hidden";} ?> class="nav-item"><a class="nav-link" href="allUsers.php">Users</a></li>
+                <li <?php if($data['perm_id'] == 1){echo "hidden";} ?> class="nav-item"><a class="nav-link" href="order.php"> Orders</a></li>
+                <li <?php if($data['perm_id'] == 1){echo "hidden";} ?> class="nav-item"><a class="nav-link" href="">Checks</a></li>
             </ul>
             <div class="navbar-nav ml-auto">
                 <div class="d-flex align-items-center">
                     <img src="<?php echo $data['image'] ?>" alt="User Photo" class="rounded-circle" width="40" height="40">
-                    <span class="ml-2"><?php echo $data['name']; ?></span>
-                    <a class="btn  mx-3" href="functions/logout.php">Logout</a>
+                    <span class="ml-2 text-light"><?php echo $data['name']; ?></span>
+                    <a class="btn  mx-3 bg-light" href="functions/logout.php">Logout</a>
                 </div>
             </div>
         </div>
