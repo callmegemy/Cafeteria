@@ -1,6 +1,6 @@
 <?php
-require 'connect.php'; 
-require 'db_class.php'; 
+require 'connect.php';
+require 'db_class.php';
 session_start();
 
 $db = new Database();
@@ -10,24 +10,24 @@ $users = $db->select('users');
 $products = $db->select('products');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $user_id = $_SESSION['id']; 
+    $user_id = $_SESSION['id'];
     $date = date('Y-m-d H:i:s');
 
-    if($_POST['room'] == 0){
+    if ($_POST['room'] == 0) {
         $old_room = $db->getRow('users', 'id', $user_id);
         $room = $old_room['room_id'];
     } else {
         $room = $_POST['room'];
     }
 
-    if(empty($_POST['ext'])){
+    if (empty($_POST['ext'])) {
         $old_ext = $db->getRow('users', 'id', $user_id);
         $ext = $old_ext['ext'];
     } else {
         $ext = $_POST['ext'];
     }
 
-    if(empty($_POST['notes'])){
+    if (empty($_POST['notes'])) {
         $comment = "Without any notes";
     } else {
         $comment = $_POST['notes'];
@@ -63,5 +63,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("location: ../home.php?error=The cart is empty");
     }
 } else {
-    echo "Invalid request method.";
+    echo "Invalid request method.";
 }

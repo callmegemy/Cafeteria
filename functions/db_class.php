@@ -122,5 +122,4 @@ public function checkIfUserExists($table, $email)
             echo "there's no code";
         }
     }
-
 }
