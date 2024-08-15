@@ -35,7 +35,7 @@ if(isset($_SESSION['login'])){
                 <div class="d-flex align-items-center">
                     <img src="<?php echo $data['image'] ?>" alt="User Photo" class="rounded-circle" width="40" height="40">
                     <span class="ml-2"><?php echo $data['name']; ?></span>
-                    <a class="btn btn-success mx-3" href="functions/logout.php">Logout</a>
+                    <a class="btn  mx-3" href="functions/logout.php">Logout</a>
                 </div>
             </div>
         </div>

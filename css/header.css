@@ -1,11 +1,12 @@
 body{
     padding-top: 90px !important;
     padding-bottom: 90px !important;
+    background-color: #FFFBF2;
 }
 
 header {
-    background-color: #4b3723;
-    color: white;
+    background-color: #33211D;
+    color: FFFBF2;
     padding: 10px 0;
     position: fixed;
     top: 0;
@@ -14,7 +15,7 @@ header {
 }
 
 .navbar-nav .nav-link {
-    color: white !important;
+    color: FFFBF2 !important;
 }
 
 .navbar-nav.ml-auto {
@@ -34,6 +35,19 @@ header {
 .navbar-nav span {
     margin-left: 10px;
     font-size: 1rem; 
+}
+.btn{
+    background-color: #33211D;
+    color: FFFBF2;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #FFFBF2;
+    color: #33211D;
 }
 
 @media (max-width: 768px) {
