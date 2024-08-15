@@ -40,11 +40,11 @@
                     <div>
                         <label for="user-select">Add to User</label>
                         <select id="user-select" name="user_id" class="form-control">
-                            <option value="">Select user</option>
-                            <?php foreach ($users as $user): ?>
-                                <option value="<?= $user['id'] ?>"><?= $user['name'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <option value="0">Select a user</option> <!-- Value is 0 for self -->
+                        <?php foreach ($users as $user): ?>
+                            <option value="<?= $user['id'] ?>"><?= $user['name'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
                     </div>
                 <?php else: ?>
                     <h3 <?php 
@@ -91,6 +91,8 @@
             <div class="col-12 col-s-12 col-md-4 col-lg-3 bill mt-4">
                 <h3 class="text-center">Bill</h3>
                 <form id="bill-form" action="functions/add_order.php" method="POST">
+                <input type="hidden" name="user_id" id="selected-user-id" value="0">
+
                     <div id="bill-items"></div>
                     <?php if(isset($_GET['error'])){echo "<span class='text-danger fw-bold'>".$_GET['error']."</span>";} ?>
                     <div class="form-group">
@@ -157,7 +159,7 @@
         const productId = $(this).data('product-id');
         const productName = $(this).data('product');
         const price = $(this).data('price');
-        let $item = $(`.bill-item[data-product-id="${productId}"]`);
+        let $item = $('.bill-item[data-product-id="${productId}"]');
 
         if ($item.length) {
             const newQuantity = parseInt($item.find('.quantity-controls span').text()) + 1;
@@ -227,6 +229,10 @@
 
         $('#no-products-message').toggle(!foundAny);
     }
+    $('#user-select').on('change', function() {
+        var selectedUserId = $(this).val();
+        $('#selected-user-id').val(selectedUserId);
+    });
 });
 
 
