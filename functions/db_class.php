@@ -6,6 +6,8 @@ class Database {
         $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
         try {
             $this->conn = new PDO($dsn, $username, $password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
@@ -59,6 +61,14 @@ class Database {
     }
     public function lastInsertId() {
         return $this->conn->lastInsertId();
+    }
+    public function selectOrder($sql) {
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function __destruct() {
+        $this->conn = null;
     }
 }
 ?>
