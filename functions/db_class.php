@@ -82,5 +82,10 @@ class Database
     public function lastInsertId() {
         return $this->conn->lastInsertId();
     }
+    public function selectOrder($sql) {
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }  
 }
 ?>
