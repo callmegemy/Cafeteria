@@ -130,5 +130,13 @@ class Database
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }  
+    public function userAllOrders($id)
+    {
+        $sql = "SELECT SUM(total) AS total_amount FROM orders WHERE user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total_amount'] ? $result['total_amount'] : 0;
+    }
 }
 ?>
