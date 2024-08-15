@@ -48,6 +48,8 @@ body {
     background-color: #FCf8f3;
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+    height: fit-content;
 }
 
 .search-select-container {

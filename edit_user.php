@@ -12,6 +12,7 @@
   if(isset($_GET['prev_data'])){
       $prev_data = json_decode($_GET['prev_data'],true);
   }
+  
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +39,7 @@
     $table= 'users';
     $field = 'id';
     $data = $db->getRow($table, $field, $id);
+    if($data['perm_id'] == 1){header("Location: home.php");};
     ?>
     <div class="login-container">
         <div class="login-box">
@@ -62,13 +64,23 @@
                     </div>
 
 
-                <div class="input-box">
+                    <div class="input-box">
             <label class="form-label" for="room">Room No.</label>
-            <input type="text" id="room" name="room" placeholder="Room"  value="<?php echo $data['room_id'] ?>">
-            <span class="text-danger">
-                    <?php $error=isset($errors['room'])? $errors['room']: ''; echo $error; ?>
-                    </span>
-        </div>
+            <select name="room" id="room">
+            <option value="0">Choose Your Room</option>
+              <?php  
+                $rooms = $db->select('rooms');
+                $user_room = $db->getRow('rooms', 'id', $data['room_id']);
+                foreach($rooms as $room){
+                    echo '<option value="'.$room['id'].'"';
+                    if(isset($user_room) && $user_room['id'] == $room['id']) {
+                        echo ' selected';
+                    }
+                    echo '>'.$room['name'].'</option>';
+                }
+                ?>
+                
+            </select>
 
         <div class="input-box">
             <label class="form-label" for="ext">Ext</label>

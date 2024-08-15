@@ -17,42 +17,7 @@
 
     <?php
     include 'design/header.php';
-
-   ?>
-   <?php
-    // Fetch the orders along with user names and product details
-    $sql=
-    " SELECT 
-    o.date, 
-    u.name, 
-    o.room, 
-    o.ext, 
-    op.product_id, 
-    op.quantity, 
-    p.image, 
-    p.name as product_name,
-    p.price
-FROM 
-    orders o 
-JOIN 
-    users u ON o.user_id = u.id 
-JOIN 
-    orders_products op ON o.id = op.order_id
-JOIN 
-    products p ON op.product_id = p.id
-WHERE 
-    o.status = 1;
-    ";
-    $orders = $db->selectOrder($sql);
-
-
-    // Organize orders by user
-    $userOrders = [];
-    foreach ($orders as $order) {
-        $userOrders[$order['name']][] = $order;
-    }
-?>
-
+    ?>
     <div class="container">
         <main>
             <h1>Orders</h1>
