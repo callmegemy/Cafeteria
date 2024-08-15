@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const orderRows = document.querySelectorAll('.order-row');
     let currentPage = 1;
-    const itemsPerPage = 1;
+    const itemsPerPage = 3;
     let fetchedItems = [];
 
     orderRows.forEach(row => {
