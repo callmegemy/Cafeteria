@@ -1,17 +1,17 @@
 <?php
 
-    session_start();
-    if(isset($_SESSION['login'])){
-        header("location:home.php");
-    }else{
-        session_destroy();
-    }
-  if(isset($_GET['errors'])){
-      $errors = json_decode($_GET['errors'],true);
-  }
-  if(isset($_GET['prev_data'])){
-      $prev_data = json_decode($_GET['prev_data'],true);
-  }
+session_start();
+if (isset($_SESSION['login'])) {
+    header("location:home.php");
+} else {
+    session_destroy();
+}
+if (isset($_GET['errors'])) {
+    $errors = json_decode($_GET['errors'], true);
+}
+if (isset($_GET['prev_data'])) {
+    $prev_data = json_decode($_GET['prev_data'], true);
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,28 +39,31 @@
 
                 <label for="exampleInputEmail1" class="form-label">Username</label>
                 <div class="input-box">
-                    <input type="email" name="email" placeholder="email"   value="<?php $val=isset($prev_data['email'])?$prev_data['email']:"";echo $val;?>">
+                    <input type="email" name="email" placeholder="email" value="<?php $val = isset($prev_data['email']) ? $prev_data['email'] : "";
+                                                                                echo $val; ?>">
                     <span class="text-danger">
-                        <?php $error=isset($errors['email'])? $errors['email']: ''; echo $error; ?>
+                        <?php $error = isset($errors['email']) ? $errors['email'] : '';
+                        echo $error; ?>
                     </span>
                 </div>
-                
+
 
                 <label class="form-label">Password</label>
                 <div class="input-box">
-                    <input type="password" name="password" placeholder="Password" >
+                    <input type="password" name="password" placeholder="Password">
                     <span class="text-danger">
-                        <?php $error=isset($errors['password'])? $errors['password']: ''; echo $error; ?>
+                        <?php $error = isset($errors['password']) ? $errors['password'] : '';
+                        echo $error; ?>
                     </span>
                 </div>
-               
+
 
                 <div class="button-box">
                     <button type="submit">Login</button>
                 </div>
 
                 <div class="links">
-                    <a href="#">Forgot Username / Password?</a>
+                    <a href="forgetPassword.php">Forgot Username / Password?</a>
                 </div>
             </form>
         </div>

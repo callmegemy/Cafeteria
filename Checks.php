@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/myorders.css">
+    <link rel="icon" href="images/cafeteria.png" type="image/png">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer.css">
@@ -130,16 +132,15 @@
         </div>
 
         <nav class="d-flex justify-content-center">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link pg-link" href="#">
-                        < </a>
-                </li>
-                <li class="page-item"><a class="page-link pg-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link pg-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link pg-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link pg-link" href="#"> > </a></li>
-            </ul>
-        </nav>
+     
+
+     <div class="pagination mt-4" >
+       <button class="prev-page">&lt;</button>
+       <span class="page-number">1</span>
+
+       <button class="next-page">&gt;</button>
+   </div>
+   </nav>
     </main>
     <?php 
  require "design/footer.php";
@@ -148,6 +149,37 @@
 
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/jquery.js"></script>
+
+    <script>
+  let currentPage = 1;
+const itemsPerPage = 3; // Number of items per page
+const rows = document.querySelectorAll('tbody tr'); // Select all table rows
+const totalPages = Math.ceil(rows.length / itemsPerPage);
+
+function showPage(page) {
+  rows.forEach((row, index) => {
+    row.style.display = (index >= (page - 1) * itemsPerPage && index < page * itemsPerPage) ? 'table-row' : 'none';
+  });
+  document.querySelector('.page-number').textContent = page;
+}
+
+document.querySelector('.prev-page').addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    showPage(currentPage);
+  }
+});
+
+document.querySelector('.next-page').addEventListener('click', () => {
+  if (currentPage < totalPages) {
+    currentPage++;
+    showPage(currentPage);
+  }
+});
+
+// Show the first page on load
+showPage(currentPage);
+</script>
 
     <script>
         let orders_table_shown = false

@@ -21,6 +21,25 @@ class Database
         $stmt->execute();
     }
 
+<<<<<<< HEAD
+=======
+
+    public function insertOrder($user_id, $date, $room, $ext, $comment, $total, $status)
+    {
+        $columns = "user_id, date, room, ext, comment, total, status";
+        $values = "'$user_id', '$date', '$room', '$ext', '$comment', '$total', $status";
+        $this->insert('orders', $columns, $values);
+        return $this->lastInsertId();
+    }
+
+    public function insertOrderProduct($order_id, $product_id, $quantity, $price)
+    {
+        $columns = "order_id, product_id, quantity, price";
+        $values = "'$order_id', '$product_id', '$quantity', '$price'";
+        $this->insert('orders_products', $columns, $values);
+    }
+
+>>>>>>> 2af8857cbb9d007c1c70bbb494639dac00c4dda0
     public function select($table)
     {
         $sql = "SELECT * FROM $table";
@@ -68,5 +87,34 @@ class Database
     public function lastInsertId()
     {
         return $this->conn->lastInsertId();
+    }
+
+    public function checkIfUserExists($table, $email)
+    {
+        $sql = "SELECT * FROM $table WHERE email = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$email]);
+
+        // Check if any row was returned
+        // Fetch the user ID
+        $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $userData !== false ? $userData : null;
+    }
+
+    public function changePasswordByID($randomNumber, $newPassword)
+    {
+        $user_id = $_COOKIE['user_id'];
+        $codeRow = $this->getRow("forget_password", "user_id",  $user_id);
+        if ($codeRow !== false) {
+            if ($randomNumber == $codeRow['random_number']) {
+                $this->update('users', "password = $newPassword", $user_id);
+                $this->delete('forget_password', $codeRow['id']);
+                header("location:../home.php");
+            } else {
+                echo "you have entered wrong or expired code please try again";
+            }
+        } else {
+            echo "there's no code";
+        }
     }
 }
