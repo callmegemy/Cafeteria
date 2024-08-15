@@ -21,8 +21,6 @@ class Database
         $stmt->execute();
     }
 
-<<<<<<< HEAD
-=======
 
     public function insertOrder($user_id, $date, $room, $ext, $comment, $total, $status)
     {
@@ -39,7 +37,6 @@ class Database
         $this->insert('orders_products', $columns, $values);
     }
 
->>>>>>> 2af8857cbb9d007c1c70bbb494639dac00c4dda0
     public function select($table)
     {
         $sql = "SELECT * FROM $table";
