@@ -72,6 +72,8 @@ class Database
         $stmt->execute([$id]);
     }
 
+
+
     public function delete($table, $id)
     {
         $sql = "DELETE FROM $table WHERE id = ?";
