@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $db->insert('orders_products', $productColumns, $productValues);
         }
 
-        header("location :../my_orders.php;");
+        header("location: ../my_orders.php");
     } catch (Exception $e) {
         header("location: ../home.php?error=The Cart Is empty");
     }
