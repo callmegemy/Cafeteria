@@ -123,6 +123,12 @@ class Database
         $stmt->execute([$user_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-}
 
+
+    public function selectOrder($sql) {
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }  
+}
 ?>
