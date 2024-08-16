@@ -140,5 +140,41 @@ class Database
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['total_amount'] ? $result['total_amount'] : 0;
     }
+    public function getUserTotals() {
+        $sql = "SELECT user_id, SUM(total) AS total_amount 
+                FROM orders 
+                GROUP BY user_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getOrdersByUser($user_id) {
+        $sql = "SELECT o.date AS order_date, o.id AS order_id, op.quantity, op.price 
+                FROM orders o 
+                JOIN orders_products op ON o.id = op.order_id 
+                WHERE o.user_id = ? 
+                ORDER BY o.date DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$user_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getRowsWithDateFilter($sql, $startDate, $endDate, $params = []) {
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(array_merge($params, [$startDate, $endDate]));
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function getOrdersByUserAndDate($user_id, $from_date, $to_date) {
+        $sql = "SELECT o.date AS order_date, o.id AS order_id, op.quantity, op.price 
+                FROM orders o 
+                JOIN orders_products op ON o.id = op.order_id 
+                WHERE o.user_id = ? AND o.date BETWEEN ? AND ?
+                ORDER BY o.date DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$user_id, $from_date, $to_date]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } 
+    
 }
 ?>

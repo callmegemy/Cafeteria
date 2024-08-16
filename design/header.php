@@ -29,7 +29,7 @@ if(isset($_SESSION['login'])){
                 <li <?php if($data['perm_id'] == 1){echo "hidden";} ?> class="nav-item"><a class="nav-link" href="allProducts.php">Products</a></li>
                 <li <?php if($data['perm_id'] == 1){echo "hidden";} ?> class="nav-item"><a class="nav-link" href="allUsers.php">Users</a></li>
                 <li <?php if($data['perm_id'] == 1){echo "hidden";} ?> class="nav-item"><a class="nav-link" href="orders.php"> Orders</a></li>
-                <li <?php if($data['perm_id'] == 1){echo "hidden";} ?> class="nav-item"><a class="nav-link" href="">Checks</a></li>
+                <li <?php if($data['perm_id'] == 1){echo "hidden";} ?> class="nav-item"><a class="nav-link" href="Checks.php">Checks</a></li>
             </ul>
             <div class="navbar-nav ml-auto">
                 <div class="d-flex align-items-center">

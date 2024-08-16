@@ -18,7 +18,6 @@
   require "design/header.php";
   if($data['perm_id'] == 1){header("Location: home.php");};
 
-
   ?>
   <div class="container">
     <h2>All Users</h2>
