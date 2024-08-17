@@ -118,6 +118,28 @@ if (isset($_GET['prev_data'])) {
                     </span>
                 </div>
 
+                <div class="input-box">
+                    <label class="form-label" for="permission">permission </label>
+                    <select name="permission" id="permission">
+                        <option value="0">Choose The permission</option>
+                        <?php
+                        $permissions = $db->select('permissions');
+                        foreach ($permissions as $permission) {
+                            echo '<option value="' . $permission['id'] . '"';
+                            if (isset($prev_data['permission']) && $prev_data['permission'] == $permission['id']) {
+                                echo ' selected';
+                            }
+                            echo '>' . $permission['name'] . '</option>';
+                        }
+                        ?>
+
+                    </select>
+                    <span class="text-danger">
+                        <?php $error = isset($errors['permission']) ? $errors['permission'] : '';
+                        echo $error; ?>
+                    </span>
+                </div>
+
 
                 <div class="input-box">
                     <label class="form-label" for="img">Profile Picture</label>

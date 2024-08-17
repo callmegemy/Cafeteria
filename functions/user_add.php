@@ -55,6 +55,12 @@ if ($_POST['room']== 0) {
     $prev_data['room'] = $_POST['room'];
 }
 
+if ($_POST['permission']== 0) {
+    $errors['permission'] = "permission is required";
+} else {
+    $prev_data['permission'] = $_POST['permission'];
+}
+
 if (empty($_FILES['img']['name'])) {
     $errors['img'] = "Image is required";
 } else{
@@ -86,15 +92,15 @@ if ($errors) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $room = $_POST['room'];
+    $permission = $_POST['permission'];
     $password = $_POST['password'];
     $ext = $_POST['ext'];
     $image = "images/$image_name";
-    $perm_id= 1;
 
     
     $table = "users";
     $columns = "`name`, `email`, `password`, `room_id`, `ext`, `image`,`perm_id`";
-    $values = "'$name', '$email', '$password', '$room', '$ext', '$image', '$perm_id' ";
+    $values = "'$name', '$email', '$password', '$room', '$ext', '$image', '$permission' ";
     $db->insert($table, $columns, $values);
 
 

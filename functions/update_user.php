@@ -43,10 +43,16 @@ if (empty($_POST['confirm'])) {
     $errors['confirm'] = "Password does not match";
 }
 
-if (empty($_POST['room'])) {
+if ($_POST['room'] == 0) {
     $errors['room'] = "room is required";
 } else {
     $prev_data['room'] = $_POST['room'];
+}
+
+if ($_POST['permission'] == 0) {
+    $errors['permission'] = "permission is required";
+} else {
+    $prev_data['permission'] = $_POST['permission'];
 }
 
 if (!empty($_FILES['img']['name'])) {
@@ -73,6 +79,7 @@ if ($errors) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $room = $_POST['room'];
+    $permission = $_POST['permission'];
     $password = $_POST['password'];
     $ext = $_POST['ext'];
 
@@ -88,7 +95,7 @@ if ($errors) {
         $user = $db->getRow($table, $field, $id);
         $image = $user['image'];
     }
-    $data = "name = '$name', email = '$email', password = '$password', room_id = '$room', ext = '$ext', image = '$image'";
+    $data = "name = '$name', email = '$email', password = '$password', room_id = '$room', ext = '$ext', image = '$image', perm_id = '$permission'";
     
     $db->update("users", $data, $id);
 

@@ -38,13 +38,14 @@ if (isset($_GET['prev_data'])) {
 <body>
     <?php
     require "design/header.php";
+    if ($data['perm_id'] == 1) {
+        header("Location: home.php");
+      };
     $id = $_GET['id'];
     $table = 'users';
     $field = 'id';
     $data = $db->getRow($table, $field, $id);
-    if ($_SESSION['id'] == 1) {
-        header("Location: home.php");
-    };
+
     ?>
     <div class="add-user-container">
         <div class="login-box">
@@ -116,6 +117,22 @@ if (isset($_GET['prev_data'])) {
                             echo $error; ?>
                         </span>
                     </div>
+
+                    <div class="input-box">
+                    <label class="form-label" for="permission">permission </label>
+                    <select name="permission" id="permission">
+                        <option value="0">Choose The permission</option>
+                        <?php
+                        $permissions = $db->select('permissions');
+                        $user_permission = $db->getRow('permissions', 'id', $data['perm_id']);
+                        foreach ($permissions as $permission) {
+                            echo '<option value="' . $permission['id'] . '"';
+                            if (isset($user_permission) && $user_permission['id'] == $permission['id']) {
+                                echo ' selected';
+                            }
+                            echo '>' . $permission['name'] . '</option>';
+                        }
+                        ?>
 
 
                     <div class="input-box">
