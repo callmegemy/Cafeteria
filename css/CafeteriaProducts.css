@@ -28,7 +28,8 @@ table {
   border-radius: 20px;
 }
 
-th, td {
+th,
+td {
   text-align: left;
   padding: 12px;
   border-bottom: 1px solid white;
@@ -46,12 +47,16 @@ th {
 }
 
 .add-product a {
-  background-color: #4B6F44;
-  color: white;
+  background-color: #d2691e;
+  color: #f5f5dc;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+.add-product a:hover {
+  background-color: #d2691e;
+  color: #f5f5dc;
 }
 
 .add-product button:hover {
@@ -78,7 +83,12 @@ th {
   border-radius: 5px;
   cursor: pointer;
 }
-
+.actions .edit {
+  background-color: #d2691e;
+}
+.actions .edit:hover {
+  background-color: #d2691e;
+}
 .actions button:hover {
   color: #4b3723;
 }
@@ -88,7 +98,12 @@ th {
 }
 
 .edit {
-  background-color: #4B6F44;
+  background-color: #d2691e;
+  color: #f5f5dc;
+}
+.edit:hover {
+  background-color: #d2691e;
+  color: #f5f5dc;
 }
 
 .pagination {
@@ -112,7 +127,8 @@ th {
     font-size: 14px;
   }
 
-  th, td {
+  th,
+  td {
     padding: 8px;
   }
 

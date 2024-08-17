@@ -1,17 +1,17 @@
 <?php
 
-    // session_start();
-    // if($_SESSION['login']){
-    //     header("location:home.php");
-    // }else{
-    //     session_destroy();
-    // }
-  if(isset($_GET['errors'])){
-      $errors = json_decode($_GET['errors'],true);
-  }
-  if(isset($_GET['prev_data'])){
-      $prev_data = json_decode($_GET['prev_data'],true);
-  }
+// session_start();
+// if($_SESSION['login']){
+//     header("location:home.php");
+// }else{
+//     session_destroy();
+// }
+if (isset($_GET['errors'])) {
+    $errors = json_decode($_GET['errors'], true);
+}
+if (isset($_GET['prev_data'])) {
+    $prev_data = json_decode($_GET['prev_data'], true);
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,101 +28,116 @@
     <link rel="stylesheet" href="css/footer.css">
 </head>
 <style>
-
+    body {
+        padding-top: 80px;
+        height: auto;
+    }
 </style>
 
 <body>
-    <?php 
+    <?php
     require "design/header.php";
-    if($data['perm_id'] == 1){header("Location: home.php");};
+    if ($data['perm_id'] == 1) {
+        header("Location: home.php");
+    };
 
     ?>
-    <div class="login-container">
+    <div class="add-user-container">
         <div class="login-box">
             <form class="login-form" method="post" action="functions/user_add.php" enctype="multipart/form-data">
                 <h1>Add User</h1>
 
-                        <div class="input-box">
+                <div class="input-box">
                     <label class="form-label" for="name"> Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your first name"  value="<?php $val=isset($prev_data['name'])?$prev_data['name']:"";echo $val;?>" > 
-                            <span class="text-danger">
-                    <?php $error=isset($errors['name'])? $errors['name']: ''; echo $error; ?>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your first name" value="<?php $val = isset($prev_data['name']) ? $prev_data['name'] : "";
+                                                                                                                                echo $val; ?>">
+                    <span class="text-danger">
+                        <?php $error = isset($errors['name']) ? $errors['name'] : '';
+                        echo $error; ?>
                     </span>
-                    </div>
+                </div>
 
-                        <div class="input-box">
+                <div class="input-box">
                     <label class="form-label" for="email"> Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your email"  value="<?php $val=isset($prev_data['email'])?$prev_data['email']:"";echo $val;?>" > 
-                            <span class="text-danger">
-                    <?php $error=isset($errors['email'])? $errors['email']: ''; echo $error; ?>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your email" value="<?php $val = isset($prev_data['email']) ? $prev_data['email'] : "";
+                                                                                                                            echo $val; ?>">
+                    <span class="text-danger">
+                        <?php $error = isset($errors['email']) ? $errors['email'] : '';
+                        echo $error; ?>
                     </span>
-                    </div>
+                </div>
 
-                    <div class="input-box">
-                <label class="form-label" for="room">Room No.</label>
-                <select name="room" id="room">
-                <option value="0">Choose Your Room</option>
-                <?php  
-                    $rooms = $db->select('rooms');
-                    foreach($rooms as $room){
-                        echo '<option value="'.$room['id'].'"';
-                        if(isset($prev_data['room']) && $prev_data['room'] == $room['id']) {
-                            echo ' selected';
+                <div class="input-box">
+                    <label class="form-label" for="room">Room No.</label>
+                    <select name="room" id="room">
+                        <option value="0">Choose Your Room</option>
+                        <?php
+                        $rooms = $db->select('rooms');
+                        foreach ($rooms as $room) {
+                            echo '<option value="' . $room['id'] . '"';
+                            if (isset($prev_data['room']) && $prev_data['room'] == $room['id']) {
+                                echo ' selected';
+                            }
+                            echo '>' . $room['name'] . '</option>';
                         }
-                        echo '>'.$room['name'].'</option>';
-                    }
-                    ?>
-                    
-                </select>
-            <span class="text-danger">
-                    <?php $error=isset($errors['room'])? $errors['room']: ''; echo $error; ?>
+                        ?>
+
+                    </select>
+                    <span class="text-danger">
+                        <?php $error = isset($errors['room']) ? $errors['room'] : '';
+                        echo $error; ?>
                     </span>
-        </div>
+                </div>
 
-        <div class="input-box">
-            <label class="form-label" for="ext">Ext</label>
-            <input type="text" class="form-control" id="ext" name="ext" placeholder="Ext" value="<?php $val=isset($prev_data['ext'])?$prev_data['ext']:"";echo $val;?>" >
-            <span class="text-danger">
-            <?php $error=isset($errors['ext'])? $errors['ext']: ''; echo $error; ?>
-        </span>
-        </div>
-      
-  
+                <div class="input-box">
+                    <label class="form-label" for="ext">Ext</label>
+                    <input type="text" class="form-control" id="ext" name="ext" placeholder="Ext" value="<?php $val = isset($prev_data['ext']) ? $prev_data['ext'] : "";
+                                                                                                            echo $val; ?>">
+                    <span class="text-danger">
+                        <?php $error = isset($errors['ext']) ? $errors['ext'] : '';
+                        echo $error; ?>
+                    </span>
+                </div>
 
-        <div class="input-box">
-            <label class="form-label" for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" >
-             <span class="text-danger">
-            <?php $error=isset($errors['password'])? $errors['password']: ''; echo $error; ?>
-        </span>
-        </div>
-        <div class="input-box">
-            <label class="form-label" for="confirm">Confirm Password</label>
-            <input type="password" class="form-control" id="confirm" name="confirm" placeholder="Re-type Password" >
-             <span class="text-danger">
-            <?php $error=isset($errors['confirm'])? $errors['confirm']: ''; echo $error; ?>
-        </span>
-        </div>
 
 
                 <div class="input-box">
-            <label class="form-label" for="img">Profile Picture</label>
-            <input type="file" class="form-control" id="img" name="img"   >
-            <span class="text-danger">
-            <?php $error=isset($errors['img'])? $errors['img']: ''; echo $error; ?>
-        </span>
-        </div>
-                <div class="button-box">
-                    <button type="submit">Submit</button>
-                    <button type="reset">Reset</button>
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+                    <span class="text-danger">
+                        <?php $error = isset($errors['password']) ? $errors['password'] : '';
+                        echo $error; ?>
+                    </span>
                 </div>
-                
+                <div class="input-box">
+                    <label class="form-label" for="confirm">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirm" name="confirm" placeholder="Re-type Password">
+                    <span class="text-danger">
+                        <?php $error = isset($errors['confirm']) ? $errors['confirm'] : '';
+                        echo $error; ?>
+                    </span>
+                </div>
 
-                
+
+                <div class="input-box">
+                    <label class="form-label" for="img">Profile Picture</label>
+                    <input type="file" class="form-control" id="img" name="img">
+                    <span class="text-danger">
+                        <?php $error = isset($errors['img']) ? $errors['img'] : '';
+                        echo $error; ?>
+                    </span>
+                </div>
+                <div class="button-box">
+                    <button class="btn edit" type="submit">Submit</button>
+                    <button class="btn btn-danger" type="reset">Reset</button>
+                </div>
+
+
+
             </form>
         </div>
     </div>
-    <?php 
+    <?php
     require "design/footer.php";
     ?>
     <script src="bootstrap/js/bootstrap.bundle.js"></script>
