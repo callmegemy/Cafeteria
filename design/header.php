@@ -2,15 +2,14 @@
 require "functions/connect.php";
 require "functions/db_class.php";
 session_start();
-if(isset($_SESSION['login'])){
+if (isset($_SESSION['login'])) {
     $db = new Database();
     $db->connect($db_host, $db_user, $db_pass, $db_name);
     $table = 'users';
     $field = 'id';
     $id = $_SESSION['id'];
     $data = $db->getRow($table, $field, $id);
-
-}else{
+} else {
     session_destroy();
     header("Location: login.php");
 }
@@ -18,7 +17,7 @@ if(isset($_SESSION['login'])){
 ?>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand mx-3" href="#">Cafeteria</a>
+        <a class="navbar-brand mx-3" href="home.php">Cafeteria</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,7 +34,7 @@ if(isset($_SESSION['login'])){
                 <div class="d-flex align-items-center">
                     <img src="<?php echo $data['image'] ?>" alt="User Photo" class="rounded-circle" width="40" height="40">
                     <span class="ml-2 text-light"><?php echo $data['name']; ?></span>
-                    <a class="btn  mx-3 bg-light" href="functions/logout.php">Logout</a>
+                    <a class="btn  mx-3 edit" href="functions/logout.php">Logout</a>
                 </div>
             </div>
         </div>

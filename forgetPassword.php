@@ -28,7 +28,7 @@
                     <?php $error = isset($errors['name']) ? $errors['name'] : '';
                     echo $error; ?>
                 </div>
-                <button type="submit" class="btn">Submit</button>
+                <button type="submit" class="btn edit">Submit</button>
             </form>
         </div>
     </main>

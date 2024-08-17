@@ -7,7 +7,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-} 
+}
 /* addproduct and check css  */
 .myBtn {
   background-color: #4b3723 !important;
@@ -43,14 +43,12 @@ body {
 .login-container {
   margin: 0;
   padding: 0;
-  width: 100%;
   width: 500px;
   height: 550px;
   background-color: #fff;
   padding: 10px;
   border-radius: 10px;
 }
-
 .form-label {
   display: block;
   font-weight: bold;
@@ -95,19 +93,12 @@ select:focus {
 }
 
 .button-box button {
-  background-color: #4b3723;
-  color: #fff;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
 }
-
-.button-box button:hover {
-  background-color: #7b5b43;
-}
-
 .links {
   text-align: center;
   margin-top: 20px;
@@ -142,4 +133,18 @@ h1 {
   color: #4b3723;
   text-align: center;
   margin-bottom: 20px;
+}
+.add-user-container {
+  padding-top: 100px;
+  padding-bottom: 50px;
+  width: 500px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+.btn.edit {
+  background-color: #d2691e;
+}
+.btn.edit:hover {
+  background-color: #d2691e;
 }

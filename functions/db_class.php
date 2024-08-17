@@ -9,26 +9,28 @@ class Database
         try {
             $this->conn = new PDO($dsn, $username, $password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
     }
 
-    public function insert($table, $columns, $values) {
+    public function insert($table, $columns, $values)
+    {
         $sql = "INSERT INTO $table ($columns) VALUES ($values)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
     }
 
-    public function insertOrder($user_id, $date, $room, $ext, $comment, $total, $status) {
+    public function insertOrder($user_id, $date, $room, $ext, $comment, $total, $status)
+    {
         $columns = "user_id, date, room, ext, comment, total, status";
         $values = "'$user_id', '$date', '$room', '$ext', '$comment', '$total', $status";
         $this->insert('orders', $columns, $values);
         return $this->lastInsertId();
     }
 
-    public function insertOrderProduct($order_id, $product_id, $quantity, $price, $user_id) {
+    public function insertOrderProduct($order_id, $product_id, $quantity, $price, $user_id)
+    {
         $columns = "order_id, user_id, product_id, quantity, price";
         $values = "'$order_id', '$user_id', '$product_id', '$quantity', '$price'";
         $this->insert('orders_products', $columns, $values);
@@ -57,7 +59,7 @@ class Database
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-  
+
     public function getRows($query, $params = [])
     {
         $stmt = $this->conn->prepare($query);
@@ -74,6 +76,8 @@ class Database
 
 
 
+
+
     public function delete($table, $id)
     {
         $sql = "DELETE FROM $table WHERE id = ?";
@@ -81,7 +85,8 @@ class Database
         $stmt->execute([$id]);
     }
 
-    public function lastInsertId() {
+    public function lastInsertId()
+    {
         return $this->conn->lastInsertId();
     }
     public function checkIfUserExists($table, $email)
@@ -112,8 +117,9 @@ class Database
             echo "there's no code";
         }
     }
-  
-    public function getLatestUserProducts($user_id) {
+
+    public function getLatestUserProducts($user_id)
+    {
         $sql = "SELECT p.*, op.order_id, o.date 
                 FROM products p 
                 JOIN orders_products op ON p.id = op.product_id 
@@ -127,11 +133,12 @@ class Database
     }
 
 
-    public function selectOrder($sql) {
+    public function selectOrder($sql)
+    {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }  
+    }
     public function userAllOrders($id)
     {
         $sql = "SELECT SUM(total) AS total_amount FROM orders WHERE user_id = ?";
@@ -177,4 +184,3 @@ class Database
     } 
     
 }
-?>

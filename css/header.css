@@ -1,62 +1,94 @@
-body{
+body {
     padding-top: 90px !important;
     padding-bottom: 90px !important;
-    background-color: #FFFBF2;
-}
-
-header {
-    background-color: #33211D;
-    color: FFFBF2;
+    background-color: #faf0e6;
+  }
+  
+  header {
+    background-color: #4b2e23;
+    color: #f5f5dc;
     padding: 10px 0;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-}
-
-.navbar-nav .nav-link {
-    color: FFFBF2 !important;
-}
-
-.navbar-nav.ml-auto {
+  }
+  
+  .navbar-nav .nav-link {
+    color: #f5f5dc !important;
+  }
+  
+  .navbar-nav.ml-auto {
     margin-left: auto;
-}
-
-
-.navbar-nav .d-flex {
+  }
+  
+  .navbar-nav .d-flex {
     align-items: center;
-}
-
-
-.navbar-nav img {
+  }
+  
+  .navbar-nav img {
     vertical-align: middle;
-}
-
-.navbar-nav span {
+  }
+  
+  .navbar-nav span {
     margin-left: 10px;
-    font-size: 1rem; 
-}
-.btn{
-    background-color: #33211D;
-    color: FFFBF2;
+    font-size: 1rem;
+  }
+  .navbar-dark .navbar-brand {
+    color: #f5f5dc;
+  }
+  .btn {
+    background-color: #77815c;
+    color: #faf0e6;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #FFFBF2;
-    color: #33211D;
-}
-
-@media (max-width: 768px) {
+  }
+  
+  .btn:hover {
+    background-color: #f5f5dc;
+    color: #33211d;
+  }
+  
+  @media (max-width: 768px) {
     .navbar-nav .nav-item {
-        margin: 10px 0;
+      margin: 10px 0;
     }
-
+  
     .navbar-nav .d-flex {
-        justify-content: center; 
-        margin-top: 10px;
+      justify-content: center;
+      margin-top: 10px;
     }
-}
+  }
+  h1,
+  h2,
+  h3,
+  .h1,
+  .h2,
+  .h3 {
+    color: #7b3f00 !important;
+  }
+  .btn-danger {
+    background-color: #b22222;
+  }
+  a.btn-danger.btn:hover {
+    background-color: #b22222 !important;
+    color: #faf0e6 !important;
+  }
+  .btn-danger.btn:hover {
+    background-color: #b22222 !important;
+    color: #faf0e6 !important;
+  }
+  .edit:hover,
+  .btn.edit:active {
+    background-color: #d2691e;
+    color: #f5f5dc;
+  }
+  .btn.edit {
+    background-color: #d2691e;
+  }
+  .btn.edit:hover {
+    background-color: #d2691e;
+  }
+  
