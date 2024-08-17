@@ -59,7 +59,7 @@ if (isset($_GET['prev_data'])) {
 
 
                 <div class="button-box">
-                    <button type="submit">Login</button>
+                    <button class=" btn text-light br" type="submit">Login</button>
                 </div>
 
                 <div class="links">

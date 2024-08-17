@@ -48,7 +48,7 @@
         <td><?php echo $user['ext']; ?></td>
         <td>
           <a class="edit btn" href="edit_user.php?id=<?php echo $user['id'] ?>">Edit</a>
-          <a href="#deleteModal<?php echo $user['id']; ?>" class="btn btn-danger" data-bs-toggle="modal">Delete</a>
+          <a href="#deleteModal<?php echo $user['id']; ?>" class="btn delete" data-bs-toggle="modal">Delete</a>
         </td>
       </tr>
 
@@ -70,7 +70,8 @@
           </div>
         </div>
       </div>
-    <?php } ?>
+      <?php } ?>
+
   </tbody>
 </table>
 
@@ -91,9 +92,10 @@
   require "design/footer.php";
   ?>
 
-  <script src="bootstrap/js/bootstrap.bundle.js"></script>
-
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/bootstrap.bundle.js"></script>
 
 
   <script>

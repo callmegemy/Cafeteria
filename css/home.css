@@ -148,12 +148,10 @@
     border-radius: 50%;
     padding: 0;
   }
-  button.highlight.add-product.order-new-drink:hover {
-  }
+
   .drink-price-highlight {
     padding: 8px;
-    background-color: #d4a017;
-    color: #faf0e6;
+    color: #d4a017;
     border-radius: 12px;
     font-weight: 900;
     line-height: 32px;

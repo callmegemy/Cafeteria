@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Home Page</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/header.css">
@@ -169,120 +169,121 @@
         </div>
     </div>
     <?php require 'design/footer.php'; ?>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="bootstrap/js/bootstrap.bundle.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Function to update the total price
-            function updateTotalPrice() {
-                let totalPrice = 0;
-                $('.bill-item').each(function() {
-                    const quantity = $(this).find('.quantity-controls span').text();
-                    const price = $(this).data('price');
-                    totalPrice += quantity * price;
-                });
-                $('#total-price').text(totalPrice);
-                $('#total-input').val(totalPrice);
-            }
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
 
-            // Function to update an item in the bill
-            function updateItem($item, newQuantity) {
-                $item.find('.quantity-controls span').text(newQuantity);
-                $item.find('.quantity-input').val(newQuantity);
+    $(document).ready(function() {
+    // Function to update the total price
+    function updateTotalPrice() {
+        let totalPrice = 0;
+        $('.bill-item').each(function() {
+            const quantity = $(this).find('.quantity-controls span').text();
+            const price = $(this).data('price');
+            totalPrice += quantity * price;
+        });
+        $('#total-price').text(totalPrice);
+        $('#total-input').val(totalPrice);
+    }
 
-                const itemTotal = newQuantity * $item.data('price');
-                $item.find('.item-total').text(itemTotal);
-                $item.find('.item-total-input').val(itemTotal);
+    // Function to update an item in the bill
+    function updateItem($item, newQuantity) {
+        $item.find('.quantity-controls span').text(newQuantity);
+        $item.find('.quantity-input').val(newQuantity);
 
-                updateTotalPrice();
-            }
+        const itemTotal = newQuantity * $item.data('price');
+        $item.find('.item-total').text(itemTotal);
+        $item.find('.item-total-input').val(itemTotal);
 
-            // Add product to bill
-            $('.add-product').click(function() {
-                const productId = $(this).data('product-id');
-                const productName = $(this).data('product');
-                const price = $(this).data('price');
-                let $item = $('.bill-item[data-product-id="${productId}"]');
+        updateTotalPrice();
+    }
 
-                if ($item.length) {
-                    const newQuantity = parseInt($item.find('.quantity-controls span').text()) + 1;
-                    updateItem($item, newQuantity);
-                } else {
-                    const billItem = `
+    // Add product to bill
+    $('.add-product').click(function() {
+        const productId = $(this).data('product-id');
+        const productName = $(this).data('product');
+        const price = $(this).data('price');
+
+        // Use backticks here to correctly reference the product ID
+        let $item = $(`.bill-item[data-product-id="${productId}"]`);
+
+        if ($item.length) {
+            const newQuantity = parseInt($item.find('.quantity-controls span').text()) + 1;
+            updateItem($item, newQuantity);
+        } else {
+            const billItem = `
                 <div class="bill-item" data-product-id="${productId}" data-price="${price}">
                     <div class="d-flex justify-content-between">
+                        <p>${productName}</p>
                         <div class="quantity-controls">
                             <button type="button" class="decrease">-</button>
                             <span>1</span>
                             <input type="hidden" name="products[${productId}][quantity]" value="1" class="quantity-input">
                             <button type="button" class="increase">+</button>
                         </div>
-                        <div class="d-flex flex-column flex-grow-1">
-                            <p class="product-name">${productName}</p>
-                            <p class="item-total-price align-self-end">EGP <span>${price}</span></p>
-                        </div>
+                        <p>EGP <span class="item-total">${price}</span></p>
                         <input type="hidden" name="products[${productId}][price]" value="${price}" class="item-total-input">
                     </div>
                 </div>`;
-                    $('#bill-items').append(billItem);
-                }
-                updateTotalPrice();
-            });
+            $('#bill-items').append(billItem);
+        }
+        updateTotalPrice();
+    });
 
-            // Increase quantity
-            $('#bill-items').on('click', '.increase', function() {
-                const $item = $(this).closest('.bill-item');
-                const newQuantity = parseInt($item.find('.quantity-controls span').text()) + 1;
-                updateItem($item, newQuantity);
-            });
+    // Increase quantity
+    $('#bill-items').on('click', '.increase', function() {
+        const $item = $(this).closest('.bill-item');
+        const newQuantity = parseInt($item.find('.quantity-controls span').text()) + 1;
+        updateItem($item, newQuantity);
+    });
 
-            // Decrease quantity
-            $('#bill-items').on('click', '.decrease', function() {
-                const $item = $(this).closest('.bill-item');
-                const currentQuantity = parseInt($item.find('.quantity-controls span').text());
+    // Decrease quantity
+    $('#bill-items').on('click', '.decrease', function() {
+        const $item = $(this).closest('.bill-item');
+        const currentQuantity = parseInt($item.find('.quantity-controls span').text());
 
-                if (currentQuantity > 1) {
-                    updateItem($item, currentQuantity - 1);
-                } else {
-                    // Remove item from bill if quantity is less than 1
-                    $item.remove();
-                }
+        if (currentQuantity > 1) {
+            updateItem($item, currentQuantity - 1);
+        } else {
+            // Remove item from bill if quantity is less than 1
+            $item.remove();
+        }
 
-                updateTotalPrice();
-            });
+        updateTotalPrice();
+    });
 
-            // Filter products based on search input
-            $('#search-input').on('input', function() {
-                const searchTerm = $(this).val().toLowerCase();
-                filterProducts(searchTerm);
-            });
+    // Filter products based on search input
+    $('#search-input').on('input', function() {
+        const searchTerm = $(this).val().toLowerCase();
+        filterProducts(searchTerm);
+    });
 
-            // Function to filter products
-            function filterProducts(searchTerm) {
-                const $productItems = $('#products-container .product-item');
-                let foundAny = false;
+    // Function to filter products
+    function filterProducts(searchTerm) {
+        const $productItems = $('#products-container .product-item');
+        let foundAny = false;
 
-                $productItems.each(function() {
-                    const productName = $(this).data('product-name');
-                    if (productName.includes(searchTerm)) {
-                        $(this).show();
-                        foundAny = true;
-                    } else {
-                        $(this).hide();
-                    }
-                });
-
-                $('#no-products-message').toggle(!foundAny);
+        $productItems.each(function() {
+            const productName = $(this).data('product-name');
+            if (productName.includes(searchTerm)) {
+                $(this).show();
+                foundAny = true;
+            } else {
+                $(this).hide();
             }
-            $('#user-select').on('change', function() {
-                var selectedUserId = $(this).val();
-                $('#selected-user-id').val(selectedUserId);
-            });
         });
-        $(function() {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
+
+        $('#no-products-message').toggle(!foundAny);
+    }
+
+    // Update selected user ID when the dropdown changes
+    $('#user-select').on('change', function() {
+        var selectedUserId = $(this).val();
+        $('#selected-user-id').val(selectedUserId);
+    });
+});
+</script>
 </body>
 
 </html>

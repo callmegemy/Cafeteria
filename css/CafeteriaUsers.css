@@ -1,15 +1,12 @@
 body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: white;
-  color: #4b3723;
+  height: 100vh !important;
 }
+
 
 .container {
   max-width: 960px;
   margin: 20px auto;
-  background-color: white;
+  background-color: #fffbf2;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px #4b37237a;
@@ -76,12 +73,12 @@ th {
   border-radius: 5px;
   cursor: pointer;
 }
-.edit.btn {
-  background-color: #d2691e;
+.edit {
+  background-color: rgb(218, 159, 91) !important;
   color: #f5f5dc;
 }
-.edit.btn:hover {
-  background-color: #d2691e;
+.edit:hover {
+  background-color: #d2691e !important;
   color: #f5f5dc;
 }
 
@@ -138,4 +135,9 @@ th {
     width: 100%;
     margin-bottom: 5px;
   }
+
+  .delete{
+    background-color: #ab4646 !important;
+  }
+
 }

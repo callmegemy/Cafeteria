@@ -42,7 +42,7 @@ if (isset($_GET['prev_data'])) {
     $table = 'users';
     $field = 'id';
     $data = $db->getRow($table, $field, $id);
-    if ($data['perm_id'] == 1) {
+    if ($_SESSION['id'] == 1) {
         header("Location: home.php");
     };
     ?>
@@ -127,8 +127,8 @@ if (isset($_GET['prev_data'])) {
                         </span>
                     </div>
                     <div class="button-box">
-                        <button type="submit">Submit</button>
-                        <button type="reset">Reset</button>
+                        <button class="btn edit" type="submit">Submit</button>
+                        <button class="btn" type="reset">Reset</button>
                     </div>
 
 
@@ -136,11 +136,10 @@ if (isset($_GET['prev_data'])) {
             </form>
         </div>
     </div>
-    <?php
-    require "design/footer.php";
-    ?>
-    <script src="bootstrap/js/bootstrap.bundle.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

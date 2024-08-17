@@ -1,15 +1,11 @@
 body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: white;
-  color: #4b3723;
+  height: 100vh !important;
+
 }
 
 .container {
-  max-width: 960px;
   margin: 20px auto;
-  background-color: white;
+  background-color: #fffbf2;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px #4b37237a;
@@ -84,10 +80,10 @@ th {
   cursor: pointer;
 }
 .actions .edit {
-  background-color: #d2691e;
+  background-color: rgb(218, 159, 91) !important;
 }
 .actions .edit:hover {
-  background-color: #d2691e;
+  background-color: rgb(218, 159, 91) !important;
 }
 .actions button:hover {
   color: #4b3723;
@@ -98,12 +94,13 @@ th {
 }
 
 .edit {
-  background-color: #d2691e;
+  background-color: rgb(218, 159, 91) !important;
   color: #f5f5dc;
 }
 .edit:hover {
-  background-color: #d2691e;
-  color: #f5f5dc;
+ 
+  color: rgb(218, 159, 91);
+  box-shadow: 0 4px 8px rgb(218, 159, 91);
 }
 
 .pagination {

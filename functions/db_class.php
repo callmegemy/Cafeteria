@@ -95,8 +95,7 @@ class Database
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$email]);
 
-        // Check if any row was returned
-        // Fetch the user ID
+
         $userData = $stmt->fetch(PDO::FETCH_ASSOC);
         return $userData !== false ? $userData : null;
     }
@@ -120,7 +119,7 @@ class Database
 
     public function getLatestUserProducts($user_id)
     {
-        $sql = "SELECT p.*, op.order_id, o.date 
+        $sql = "SELECT DISTINCT p.id, p.name, p.image, p.price 
                 FROM products p 
                 JOIN orders_products op ON p.id = op.product_id 
                 JOIN orders o ON op.order_id = o.id 
@@ -182,5 +181,37 @@ class Database
         $stmt->execute([$user_id, $from_date, $to_date]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } 
+    public function getUserOrders($user_id)
+    {
+        $sql = "
+        SELECT 
+            o.id, 
+            o.date, 
+            o.room, 
+            o.ext, 
+            o.total, 
+            op.product_id, 
+            op.quantity, 
+            p.image, 
+            p.name AS product_name,
+            p.price,
+            u.name AS user_name
+        FROM 
+            orders o 
+        JOIN 
+            orders_products op ON o.id = op.order_id
+        JOIN 
+            products p ON op.product_id = p.id
+        JOIN 
+            users u ON o.user_id = u.id
+        WHERE 
+            o.user_id = ? AND o.status = 1
+        ORDER BY 
+            o.date DESC;
+    ";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$user_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     
 }

@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/CafeteriaProducts.css">
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
   <div class="container">
     <h2>All Products</h2>
     <div class="add-product">
-      <a class="btn " href="AddProduct.php">Add product</a>
+      <a class="btn edit" href="AddProduct.php">Add product</a>
     </div>
 
     <table class="table table-striped table-hover">
@@ -50,7 +51,7 @@
                 ?> </td>
             <td>
               <div class="actions">
-                <a class="edit btn btn-success" href="edit_product.php?id=<?php echo $row['id']; ?>">Edit</a>
+                <a class="edit btn " href="edit_product.php?id=<?php echo $row['id']; ?>">Edit</a>
                 <a href="#deleteModal<?php echo $row['id']; ?>" class="btn btn-danger" data-bs-toggle="modal">Delete</a>
               </div>
             </td>
@@ -88,8 +89,14 @@
     </nav>
   </div>
 
-  <script src="bootstrap/js/bootstrap.bundle.js"></script>
-  <script>
+  <?php require "design/footer.php" ?>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+<script src="bootstrap/js/bootstrap.bundle.js"></script>
+
+ <script>
   let currentPage = 1;
 const itemsPerPage = 3; // Number of items per page
 const rows = document.querySelectorAll('tbody tr'); // Select all table rows

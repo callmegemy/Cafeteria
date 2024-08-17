@@ -14,7 +14,7 @@ if ($date_from && $date_to) {
     $query = "SELECT * FROM orders WHERE user_id = ? AND date >= ? AND date <= ?";
     $orders = $db->getRows($query, [$user_id, $date_from, $date_to]);
 } else {
-    // Fetch all orders if no date range is selected
+    // Fetch  orders if no date range is selected
     $orders = $db->getAll('orders', 'user_id', $user_id);
 }
 
@@ -34,22 +34,6 @@ if ($date_from && $date_to) {
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
 </head>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Orders</title>
-    <link rel="stylesheet" href="css/myorders.css">
-    <link rel="icon" href="images/cafeteria.png" type="image/png">
-    <script src="js/my_orders_items.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-</head>
-
 <body>
 
     <div class="container">
@@ -147,7 +131,9 @@ if ($date_from && $date_to) {
         });
     </script>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

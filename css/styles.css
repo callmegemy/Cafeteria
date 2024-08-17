@@ -7,6 +7,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #faf0e6 !important;
 }
 /* addproduct and check css  */
 .myBtn {
@@ -48,6 +49,8 @@ body {
   background-color: #fff;
   padding: 10px;
   border-radius: 10px;
+  background-color: #faf0e6 !important;
+
 }
 .form-label {
   display: block;
@@ -114,6 +117,15 @@ select:focus {
   text-decoration: underline;
 }
 
+#product_img{
+  width:400px;
+  height: 500px;
+  margin-top: -80px;
+
+
+  
+}
+
 /*  Register */
 .input-box select,
 .input-box input[type="file"] {
@@ -141,10 +153,17 @@ h1 {
   background-color: #fff;
   padding: 10px;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #faf0e6 ;
+
 }
 .btn.edit {
   background-color: #d2691e;
 }
 .btn.edit:hover {
   background-color: #d2691e;
+}
+
+.br{
+  background-color: #4b3723 !important;
 }
